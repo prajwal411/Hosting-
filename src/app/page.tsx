@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Types
@@ -112,6 +112,14 @@ const INFRASTRUCTURE_FEATURES = [
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         ),
     },
+];
+
+const ARCHITECTURE_STEPS = [
+    { title: "Client", desc: "Origin requests from user endpoints." },
+    { title: "Edge Network", desc: "Global caching and localized delivery." },
+    { title: "Deployment Layer", desc: "Immutable atomic infrastructure builds." },
+    { title: "Secure DNS", desc: "Protective routing and DDoS mitigation." },
+    { title: "Monitoring System", desc: "Real-time health and telemetry tracking." }
 ];
 
 export default function Home() {
@@ -330,6 +338,44 @@ export default function Home() {
                         </div>
                     </div>
                 </motion.section>
+
+                {/* Platform Architecture */}
+                <section className="section bg-surface-alt">
+                    <div className="container">
+                        <div className="infra-header">
+                            <h2 className="section-title" style={{ marginBottom: "0.5rem" }}>Platform Architecture</h2>
+                            <p className="section-subtitle" style={{ marginBottom: "2rem" }}>A highly resilient, horizontal deployment lifecycle engineered for global reach.</p>
+                        </div>
+                        <div className="arch-flow">
+                            {ARCHITECTURE_STEPS.map((step, idx) => (
+                                <React.Fragment key={idx}>
+                                    <motion.div
+                                        className="arch-card"
+                                        initial={{ opacity: 0, y: 15 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-50px" }}
+                                        transition={{ duration: 0.5, delay: idx * 0.15 }}
+                                    >
+                                        <h4>{step.title}</h4>
+                                        <p>{step.desc}</p>
+                                    </motion.div>
+
+                                    {idx < ARCHITECTURE_STEPS.length - 1 && (
+                                        <motion.div
+                                            className="arch-connector"
+                                            initial={{ opacity: 0 }}
+                                            whileInView={{ opacity: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.4, delay: idx * 0.15 + 0.2 }}
+                                        >
+                                            <div className="arch-connector-flow" style={{ animationDelay: `${idx * 0.3}s` }}></div>
+                                        </motion.div>
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
                 {/* How It Works */}
                 <section id="workflow" className="section">
