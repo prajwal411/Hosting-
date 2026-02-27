@@ -122,6 +122,13 @@ const ARCHITECTURE_STEPS = [
     { title: "Monitoring System", desc: "Real-time health and telemetry tracking." }
 ];
 
+const TEAMS_DATA = [
+    { title: "Digital Agencies", desc: "Predictable, multi-tenant infrastructure scaling for simultaneous client deployments." },
+    { title: "SaaS Platforms", desc: "High-availability architecture ensuring bounded latency during dynamic usage loads." },
+    { title: "Corporate Websites", desc: "Isolated environments prioritizing compliance, security, and global edge caching." },
+    { title: "E-commerce Brands", desc: "Elastic compute provisioning accommodating unpredictable transactional traffic spikes." }
+];
+
 export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [activePlan, setActivePlan] = useState<Plan | null>(null);
@@ -372,6 +379,42 @@ export default function Home() {
                                         </motion.div>
                                     )}
                                 </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Built for Teams */}
+                <section className="section">
+                    <div className="container" style={{ maxWidth: "1000px" }}>
+                        <div className="infra-header">
+                            <h2 className="section-title" style={{ marginBottom: "0.5rem" }}>Built for Teams That Ship</h2>
+                            <p className="section-subtitle" style={{ marginBottom: "3rem" }}>Reliable infrastructure parameters aligned to specific production requirements.</p>
+                        </div>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5rem" }}>
+                            {TEAMS_DATA.map((team, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    style={{
+                                        background: "rgba(255, 255, 255, 0.02)",
+                                        border: "1px solid var(--border-color)",
+                                        borderRadius: "var(--radius-xl)",
+                                        padding: "2rem",
+                                        display: "flex",
+                                        flexDirection: "column"
+                                    }}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                                >
+                                    <h3 style={{ fontSize: "1.125rem", fontWeight: 600, color: "var(--text-primary)", marginBottom: "0.75rem" }}>
+                                        {team.title}
+                                    </h3>
+                                    <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.6, margin: 0 }}>
+                                        {team.desc}
+                                    </p>
+                                </motion.div>
                             ))}
                         </div>
                     </div>
