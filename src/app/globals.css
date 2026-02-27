@@ -101,6 +101,8 @@ a {
 .btn-primary:hover:not(:disabled) {
   background-color: #fff;
   border-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -111,6 +113,8 @@ a {
 .btn-secondary:hover:not(:disabled) {
   border-color: var(--text-primary);
   background: var(--bg-main);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
 }
 
 .btn:disabled {
@@ -264,6 +268,11 @@ a {
 .infra-card-icon svg {
   width: 100%;
   height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.infra-card:hover .infra-card-icon svg {
+  transform: scale(1.08);
 }
 
 .infra-card-title {
@@ -299,6 +308,14 @@ a {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   align-items: flex-start;
+  transition: var(--transition);
+}
+
+.step-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .step-number {
@@ -345,6 +362,8 @@ a {
 
 .pricing-card:hover {
   border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .pricing-card.business {
@@ -354,6 +373,8 @@ a {
 
 .pricing-card.business:hover {
   border-color: #666;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
 }
 
 .plan-name {
@@ -662,6 +683,13 @@ a {
   position: relative;
   z-index: 2;
   min-width: 140px;
+  transition: var(--transition);
+}
+
+.arch-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .arch-card h4 {
