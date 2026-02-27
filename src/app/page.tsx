@@ -26,6 +26,7 @@ const PLANS: Plan[] = [
         gst: 1260,
         total: 8260,
         features: [
+            "Lifetime Hosting Access",
             "1 Production Deployment",
             "Global Edge Network",
             "Automated SSL Provisioning",
@@ -42,6 +43,7 @@ const PLANS: Plan[] = [
         gst: 3240,
         total: 21240,
         features: [
+            "Lifetime Hosting Access",
             "Up to 3 Production Deployments",
             "Priority Edge Routing",
             "Advanced Uptime Monitoring",
@@ -59,6 +61,7 @@ const PLANS: Plan[] = [
         gst: 6300,
         total: 41300,
         features: [
+            "Lifetime Hosting Access",
             "Unlimited Deployments",
             "Dedicated Infrastructure Setup",
             "Custom Security Configurations",
@@ -216,33 +219,41 @@ export default function Home() {
         setIsProcessing(true);
         setGlobalError("");
 
-        // Simulate network latency
-        await new Promise((resolve) => setTimeout(resolve, 800));
-
-        const options = {
-            key: "YOUR_RAZORPAY_KEY",
-            amount: activePlan.total * 100,
-            currency: "INR",
-            name: "CloudMeld Hosting",
-            description: `${activePlan.name} Layout`,
-            handler: function (response: any) {
-                setIsProcessing(false);
-                setIsSuccess(true);
-            },
-            prefill: {
-                email: email,
-            },
-            theme: {
-                color: "#111111",
-            },
-            modal: {
-                ondismiss: function () {
-                    setIsProcessing(false);
-                }
-            }
-        };
-
         try {
+            // Create order on the server
+            const res = await fetch('/api/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: activePlan.total * 100 })
+            });
+            const data = await res.json();
+
+            if (!res.ok) throw new Error(data.error || "Failed to create order");
+
+            const options = {
+                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use the public key from env
+                amount: activePlan.total * 100,
+                currency: "INR",
+                name: "CloudMeld Hosting",
+                description: `${activePlan.name} Access`,
+                order_id: data.id,
+                handler: function (response: any) {
+                    setIsProcessing(false);
+                    setIsSuccess(true);
+                },
+                prefill: {
+                    email: email,
+                },
+                theme: {
+                    color: "#111111",
+                },
+                modal: {
+                    ondismiss: function () {
+                        setIsProcessing(false);
+                    }
+                }
+            };
+
             // @ts-ignore
             const rzp = new window.Razorpay(options);
             rzp.on("payment.failed", function (response: any) {
@@ -252,7 +263,7 @@ export default function Home() {
             rzp.open();
         } catch (error) {
             setIsProcessing(false);
-            setGlobalError("Payment gateway offline. Please utilize alternative deployment channels.");
+            setGlobalError("Payment gateway offline or failed to create order.");
         }
     };
 
