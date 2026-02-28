@@ -144,6 +144,10 @@ export default function Home() {
     const [errors, setErrors] = useState<{ email?: string; domain?: string }>({});
     const [globalError, setGlobalError] = useState("");
 
+    const [couponCode, setCouponCode] = useState("");
+    const [discountApplied, setDiscountApplied] = useState(false);
+    const [couponError, setCouponError] = useState("");
+
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -185,6 +189,19 @@ export default function Home() {
         setCompany("");
         setErrors({});
         setGlobalError("");
+        setCouponCode("");
+        setDiscountApplied(false);
+        setCouponError("");
+    };
+
+    const handleApplyCoupon = () => {
+        if (couponCode.trim().toUpperCase() === "99OFF") {
+            setDiscountApplied(true);
+            setCouponError("");
+        } else {
+            setDiscountApplied(false);
+            setCouponError("Invalid coupon code");
+        }
     };
 
     const validateForm = () => {
@@ -220,11 +237,12 @@ export default function Home() {
         setGlobalError("");
 
         try {
+            const finalTotal = discountApplied ? 1 : activePlan.total;
             // Create order on the server
             const res = await fetch('/api/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: activePlan.total * 100 })
+                body: JSON.stringify({ amount: finalTotal * 100 })
             });
             const data = await res.json();
 
@@ -232,7 +250,7 @@ export default function Home() {
 
             const options = {
                 key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use the public key from env
-                amount: activePlan.total * 100,
+                amount: finalTotal * 100,
                 currency: "INR",
                 name: "RoomitHosting",
                 description: `${activePlan.name} Access`,
@@ -606,10 +624,16 @@ export default function Home() {
                                             <span>GST (18%)</span>
                                             <span>₹{activePlan.gst.toLocaleString("en-IN")}</span>
                                         </div>
+                                        {discountApplied && (
+                                            <div className="summary-item" style={{ color: '#10b981' }}>
+                                                <span>Coupon 99OFF Applied</span>
+                                                <span>-₹{(activePlan.total - 1).toLocaleString("en-IN")}</span>
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="summary-total">
                                         <span>Total</span>
-                                        <span>₹{activePlan.total.toLocaleString("en-IN")}</span>
+                                        <span>₹{(discountApplied ? 1 : activePlan.total).toLocaleString("en-IN")}</span>
                                     </div>
                                     <p style={{ marginTop: '2rem', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
                                         Infrastructure setup is billed as a one-time fee. No recurring charges.
@@ -658,6 +682,32 @@ export default function Home() {
                                             />
                                         </div>
 
+                                        <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                                            <label htmlFor="couponCode">Coupon Code</label>
+                                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                                <input
+                                                    type="text"
+                                                    id="couponCode"
+                                                    placeholder="Enter coupon code"
+                                                    value={couponCode}
+                                                    onChange={(e) => { setCouponCode(e.target.value); setCouponError(""); }}
+                                                    disabled={isProcessing || discountApplied}
+                                                    style={{ flex: 1, marginBottom: 0 }}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={handleApplyCoupon}
+                                                    className="btn btn-secondary"
+                                                    disabled={isProcessing || discountApplied || !couponCode}
+                                                    style={{ minHeight: '42px', padding: '0 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                >
+                                                    {discountApplied ? "Applied" : "Apply"}
+                                                </button>
+                                            </div>
+                                            {couponError && <div className="form-error" style={{ marginTop: '0.5rem' }}>{couponError}</div>}
+                                            {discountApplied && <div style={{ color: '#10b981', fontSize: '0.875rem', marginTop: '0.5rem' }}>Coupon applied successfully!</div>}
+                                        </div>
+
                                         {globalError && <div className="form-error" style={{ marginBottom: '1rem' }}>{globalError}</div>}
 
                                         <div className="modal-footer">
@@ -686,7 +736,16 @@ export default function Home() {
                                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '0.9375rem' }}>
                                     Your infrastructure request for <strong>{domain}</strong> has been received securely.
                                 </p>
-                                <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                                <a
+                                    href="https://vercel.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary"
+                                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginBottom: '1rem', textDecoration: 'none' }}
+                                >
+                                    Click here to go to dashboard
+                                </a>
+                                <button type="button" className="btn btn-secondary" onClick={closeModal} style={{ width: '100%' }}>
                                     Return to Overview
                                 </button>
                             </div>
