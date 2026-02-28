@@ -12,7 +12,7 @@ export default function StatusPage() {
                         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                             <path d="M12 2L2 22h20L12 2z"></path>
                         </svg>
-                        CloudMeld
+                        RoomitHosting
                     </a>
                     <ul className="nav-links">
                         <li><a href="/security">Security</a></li>

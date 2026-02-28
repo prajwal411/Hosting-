@@ -12,7 +12,7 @@ export default function TermsPage() {
                         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                             <path d="M12 2L2 22h20L12 2z"></path>
                         </svg>
-                        CloudMeld
+                        RoomitHosting
                     </a>
                     <ul className="nav-links">
                         <li><a href="/security">Security</a></li>
@@ -26,7 +26,7 @@ export default function TermsPage() {
                     <div className="container" style={{ textAlign: "left", maxWidth: "800px" }}>
                         <h1 className="hero-title" style={{ fontSize: "2.5rem", marginBottom: "1rem", textAlign: "left" }}>Terms of Service</h1>
                         <p className="hero-subtitle" style={{ fontSize: "1.125rem", marginLeft: 0, textAlign: "left", maxWidth: "100%" }}>
-                            Legal agreements and operational policies governing the use of CloudMeld infrastructure services.
+                            Legal agreements and operational policies governing the use of RoomitHosting infrastructure services.
                         </p>
                     </div>
                 </section>
@@ -42,7 +42,7 @@ export default function TermsPage() {
                             <div>
                                 <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "var(--text-primary)", marginBottom: "1rem" }}>1. Scope of Service</h2>
                                 <p style={{ marginBottom: "1rem" }}>
-                                    CloudMeld provides managed cloud infrastructure and deployment services. This encompasses the provisioning of computational resources, automated secure socket layer (SSL) configuration, and global edge network distribution according to the plan selected during the deployment request.
+                                    RoomitHosting provides managed cloud infrastructure and deployment services. This encompasses the provisioning of computational resources, automated secure socket layer (SSL) configuration, and global edge network distribution according to the plan selected during the deployment request.
                                 </p>
                                 <p>
                                     The infrastructure is provided "as-is". While we guarantee high availability as per our Service Level Agreements (SLA), the specific performance of individual applications remains subject to the client's codebase optimization.
@@ -52,7 +52,7 @@ export default function TermsPage() {
                             <div>
                                 <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "var(--text-primary)", marginBottom: "1rem" }}>2. Deployment Responsibility</h2>
                                 <p style={{ marginBottom: "1rem" }}>
-                                    Clients are exclusively responsible for the functionality, legality, and structural integrity of the application code provided for deployment. CloudMeld assumes no liability for application-level errors, security vulnerabilities introduced by source code, or regulatory compliance failures originating from the deployed data.
+                                    Clients are exclusively responsible for the functionality, legality, and structural integrity of the application code provided for deployment. RoomitHosting assumes no liability for application-level errors, security vulnerabilities introduced by source code, or regulatory compliance failures originating from the deployed data.
                                 </p>
                                 <p>
                                     Any deployment found transmitting malicious payloads, engaging in unauthorized network scanning, or violating regional laws will result in immediate infrastructure termination without prior notice.
@@ -76,7 +76,7 @@ export default function TermsPage() {
                             <div>
                                 <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "var(--text-primary)", marginBottom: "1rem" }}>5. Limitation of Liability</h2>
                                 <p>
-                                    To the maximum extent permitted by applicable law, CloudMeld shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from server degradation, network packet loss, or localized edge outages.
+                                    To the maximum extent permitted by applicable law, RoomitHosting shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from server degradation, network packet loss, or localized edge outages.
                                 </p>
                             </div>
                         </motion.div>
