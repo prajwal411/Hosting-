@@ -113,7 +113,7 @@ export default function SecurityPage() {
             <footer className="footer" style={{ marginTop: "4rem" }}>
                 <div className="container">
                     <div className="footer-bottom" style={{ borderTop: "none", paddingTop: 0 }}>
-                        <span>© {new Date().getFullYear()} CloudMeld Hosting. Infrastructure Security Division.</span>
+                        <span>© {new Date().getFullYear()} RoomitHosting. Infrastructure Security Division.</span>
                         <div style={{ display: "flex", gap: "1rem" }}>
                             <a href="/">Return to Platform</a>
                         </div>

@@ -78,7 +78,7 @@ export default function PrivacyPage() {
             <footer className="footer" style={{ marginTop: "4rem" }}>
                 <div className="container" style={{ maxWidth: "800px" }}>
                     <div className="footer-bottom" style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem" }}>
-                        <span>© {new Date().getFullYear()} CloudMeld Hosting.</span>
+                        <span>© {new Date().getFullYear()} RoomitHosting.</span>
                         <div style={{ display: "flex", gap: "1rem" }}>
                             <a href="/">Return to Platform</a>
                         </div>

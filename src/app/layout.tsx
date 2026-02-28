@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CloudMeld Hosting - Checkout",
-  description: "Starter Hosting Plan Checkout",
+  title: "RoomitHosting",
+  description: "RoomitHosting",
 };
 
 export const viewport: Viewport = {

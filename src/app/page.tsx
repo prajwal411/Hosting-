@@ -234,7 +234,7 @@ export default function Home() {
                 key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use the public key from env
                 amount: activePlan.total * 100,
                 currency: "INR",
-                name: "CloudMeld Hosting",
+                name: "RoomitHosting",
                 description: `${activePlan.name} Access`,
                 order_id: data.id,
                 handler: function (response: any) {
@@ -539,7 +539,7 @@ export default function Home() {
                                 <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }}>
                                     <path d="M12 2L2 22h20L12 2z"></path>
                                 </svg>
-                                CloudMeld Hosting
+                                RoomitHosting
                             </div>
                             <div className="footer-desc">
                                 Managed Infrastructure Division.
@@ -573,7 +573,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <span>© {new Date().getFullYear()} CloudMeld Hosting. All rights reserved.</span>
+                        <span>© {new Date().getFullYear()} RoomitHosting. All rights reserved.</span>
                         <div style={{ display: 'flex', gap: '1rem' }}>
                             <a href="#">Status: All systems normal</a>
                         </div>
